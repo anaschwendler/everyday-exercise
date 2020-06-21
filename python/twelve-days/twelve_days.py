@@ -22,14 +22,12 @@ def gifts(end_verse):
 
 
 def recite(start_verse, end_verse):
-    start_index = start_verse - 1
     returned_verse = []
-    for index in range(start_index, end_verse):
-        base_phrase = (
-            f"On the {gifts_array[index][0]} day of Christmas my true love gave to me:"
-        )
+    for index in range(start_verse - 1, end_verse):
+        day = gifts_array[index][0]
+        base_phrase = f"On the {day} day of Christmas my true love gave to me: "
         if index == 0:
-            returned_verse.append(base_phrase + f" {gifts_array[index][1]}")
+            returned_verse.append(base_phrase + f"{gifts_array[index][1]}")
         else:
-            returned_verse.append(base_phrase + f" {gifts(index)}")
+            returned_verse.append(base_phrase + f"{gifts(index)}")
     return returned_verse

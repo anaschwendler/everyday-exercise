@@ -11,9 +11,6 @@ def score(word):
         10: ["q", "z"],
     }
 
-    word_sum = 0
-
-    for c in filter_alphachars:
-        word_sum += [i[0] for i in letter_values.items() if c in i[1]][0]
-
-    return word_sum
+    return sum(
+        [i[0] for i in letter_values.items() if c in i[1]][0] for c in filter_alphachars
+    )

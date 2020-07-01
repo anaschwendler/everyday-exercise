@@ -15,9 +15,9 @@ class Luhn:
         card_number_int_list = [int(i) for i in card_number_list]
         for i in range(1, len(card_number_int_list), 2):
             double_value = card_number_int_list[i] * 2
-            if double_value > 9:
-                double_value = double_value - 9
-            card_number_int_list[i] = double_value
+            card_number_int_list[i] = (
+                double_value if double_value < 9 else double_value - 9
+            )
         return card_number_int_list
 
     def __sum_card_values(self, doubled_card_numbers):

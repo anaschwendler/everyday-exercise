@@ -12,11 +12,11 @@ def parse(markdown):
     in_list = False
     in_list_append = False
     for i in lines:
-        if re.match("###### (.*)", i) is not None:
+        if re.match("###### (.*)", i):
             i = f"<h6>{i[7:]}</h6>"
-        elif re.match("## (.*)", i) is not None:
+        elif re.match("## (.*)", i):
             i = f"<h2>{i[3:]}</h2>"
-        elif re.match("# (.*)", i) is not None:
+        elif re.match("# (.*)", i):
             i = f"<h1>{i[2:]}</h1>"
         m = re.match(r"\* (.*)", i)
         if m:

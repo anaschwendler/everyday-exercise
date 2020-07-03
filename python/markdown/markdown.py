@@ -1,3 +1,8 @@
+"""
+Observations:
+re.match(): If zero or more characters at the beginning of string match
+this regular expression, return a corresponding match object.
+"""
 import re
 
 
@@ -20,29 +25,29 @@ def parse(markdown):
                 is_bold = False
                 is_italic = False
                 curr = m.group(1)
-                m1 = re.match("(.*)__(.*)__(.*)", curr)
+                m1 = bold_match(curr)
                 if m1:
-                    curr = f"{m1.group(1)}<strong>{m1.group(2)}</strong>{m1.group(3)}"
+                    curr = bold_constructor(m1)
                     is_bold = True
-                m1 = re.match("(.*)_(.*)_(.*)", curr)
+                m1 = italic_match(curr)
                 if m1:
-                    curr = f"{m1.group(1)}<em>{m1.group(2)}</em>{m1.group(3)}"
+                    curr = italic_constructor(m1)
                     is_italic = True
                 i = f"<ul><li>{curr}</li>"
             else:
                 is_bold = False
                 is_italic = False
                 curr = m.group(1)
-                m1 = re.match("(.*)__(.*)__(.*)", curr)
+                m1 = bold_match(curr)
                 if m1:
                     is_bold = True
-                m1 = re.match("(.*)_(.*)_(.*)", curr)
+                m1 = italic_match(curr)
                 if m1:
                     is_italic = True
                 if is_bold:
-                    curr = f"{m1.group(1)}<strong>{m1.group(2)}</strong>{m1.group(3)}"
+                    curr = bold_constructor(m1)
                 if is_italic:
-                    curr = f"{m1.group(1)}<em>{m1.group(2)}</em>{m1.group(3)}"
+                    curr = italic_constructor(m1)
                 i = f"<li>{curr}</li>"
         else:
             if in_list:
@@ -52,12 +57,12 @@ def parse(markdown):
         m = re.match("<h|<ul|<p|<li", i)
         if not m:
             i = f"<p>{i}</p>"
-        m = re.match("(.*)__(.*)__(.*)", i)
+        m = bold_match(i)
         if m:
-            i = f"{m.group(1)}<strong>{m.group(2)}</strong>{m.group(3)}"
-        m = re.match("(.*)_(.*)_(.*)", i)
+            i = bold_constructor(m)
+        m = italic_match(i)
         if m:
-            i = f"{m.group(1)}<em>{m.group(2)}</em>{m.group(3)}"
+            i = italic_constructor(m)
         if in_list_append:
             i = f"</ul>{i}"
             in_list_append = False
@@ -65,3 +70,19 @@ def parse(markdown):
     if in_list:
         res += "</ul>"
     return res
+
+
+def bold_match(line):
+    return re.match("(.*)__(.*)__(.*)", line)
+
+
+def bold_constructor(line):
+    return f"{line.group(1)}<strong>{line.group(2)}</strong>{line.group(3)}"
+
+
+def italic_match(line):
+    return re.match("(.*)_(.*)_(.*)", line)
+
+
+def italic_constructor(line):
+    return f"{line.group(1)}<em>{line.group(2)}</em>{line.group(3)}"

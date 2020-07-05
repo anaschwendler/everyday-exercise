@@ -17,10 +17,12 @@ jobs:
       - name: Install Dependencies
         run: |
           make python_dependencies
+          make ruby_dependencies
 
       - name: Lint
         run: |
           black --check ./python/
+          rubocop ./ruby
 
       - name: Run Tests
         run: |

@@ -54,7 +54,7 @@ def parse(markdown):
                 in_list_append = True
                 in_list = False
 
-        m = re.match("<h|<ul|<p|<li", i)
+        m = tag_match(i)
         if not m:
             i = f"<p>{i}</p>"
         m = bold_match(i)
@@ -70,6 +70,10 @@ def parse(markdown):
     if in_list:
         res += "</ul>"
     return res
+
+
+def tag_match(line):
+    return re.match("<h|<ul|<p|<li", line)
 
 
 def bold_match(line):

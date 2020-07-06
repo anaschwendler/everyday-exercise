@@ -1,2 +1,4 @@
+AllCops:
+  NewCops: disable
 Documentation:
   Enabled: false

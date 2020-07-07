@@ -8,17 +8,11 @@
 #     d[index] = el.downcase
 # end
 
-def resistor_color_values
-  {
-    "black": 0, "brown": 1, "red": 2, "orange": 3, "yellow": 4,
-    "green": 5, "blue": 6, "violet": 7, "grey": 8, "white": 9
-  }
-end
+module ResistorColorDuo
+  COLORS = %w[black brown red orange yellow green blue violet grey white].freeze
 
-class ResistorColorDuo
   def self.value(colors)
-    first_value = resistor_color_values[colors[0].to_sym]
-    second_value = resistor_color_values[colors[1].to_sym]
-    "#{first_value}#{second_value}".to_i
+    color_a, color_b = colors
+    "#{COLORS.index(color_a)}#{COLORS.index(color_b)}".to_i
   end
 end

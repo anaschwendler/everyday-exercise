@@ -27,4 +27,4 @@ jobs:
       - name: Run Tests
         run: |
           pytest ./python/
-          # cd ruby; rake
+          ruby -Itest ruby/*/*_test.rb

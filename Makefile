@@ -3,5 +3,5 @@ python_dependencies:
 	pip install -r python/requirements.txt
 
 ruby_dependencies:
-	sudo gem install bundler
+	gem install bundler
 	bundle install --gemfile=ruby/Gemfile

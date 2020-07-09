@@ -32,4 +32,4 @@ jobs:
       - name: Run Tests
         run: |
           pytest ./python/
-          ruby -Itest ./ruby/*/*_test.rb
+          for file in ./ruby/*/*_test.rb; do ruby "$file"; done

@@ -14,7 +14,9 @@ module BalancedBrackets
       if CORRESPONDENCE.keys.include? c
         entry_balance.append(c)
       elsif CORRESPONDENCE.values.include? c
-        entry_balance.pop if CORRESPONDENCE[entry_balance.last] == c
+        return false unless CORRESPONDENCE[entry_balance.last] == c
+
+        entry_balance.pop
       end
     end
 

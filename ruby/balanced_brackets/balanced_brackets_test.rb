@@ -32,4 +32,8 @@ class BalancedBracketsTest < Minitest::Test
   def test_invalid_order_entry_check
     refute BalancedBrackets.balanced?('{{)[](}}')
   end
+
+  def test_invalid_closing_bracket_entry_check
+    refute BalancedBrackets.balanced?('{(([])[])[]]}')
+  end
 end

@@ -7,7 +7,7 @@ class Matrix:
         return self.rows[index - 1]
 
     def column(self, index):
-        return self.columns[index]
+        return self.columns[index - 1]
 
     def __define_rows(self, matrix_string):
         split_lines = matrix_string.splitlines()
@@ -17,14 +17,6 @@ class Matrix:
         return rows
 
     def __define_columns(self, matrix_string):
-        split_lines = matrix_string.splitlines()
-        columns = {}
-        for i in split_lines:
-            split = i.split()
-            k = 1
-            for j in split:
-                if k not in columns:
-                    columns[k] = []
-                columns[k].append(int(j))
-                k += 1
-        return columns
+        tuple_rows = [tuple(row) for row in self.rows]
+        columns = list(zip(*tuple_rows))
+        return [list(column) for column in columns]

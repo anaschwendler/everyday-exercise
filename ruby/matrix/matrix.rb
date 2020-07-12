@@ -7,11 +7,11 @@
 # `ruby/matrix` directory.
 
 class Matrix
+  attr_reader :matrix
+
   def initialize(matrix)
     @matrix = matrix
   end
-
-  attr_reader :matrix
 
   def rows
     splitted_matrix = matrix.split("\n")

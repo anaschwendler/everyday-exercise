@@ -10,11 +10,11 @@
 # each_cons(n) means each consecutive for amount n
 
 class Series
+  attr_reader :string
+
   def initialize(string)
     @string = string
   end
-
-  attr_reader :string
 
   def slices(series_length)
     string_length = string.length

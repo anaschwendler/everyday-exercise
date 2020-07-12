@@ -7,11 +7,11 @@
 # `ruby/high-scores` directory.
 
 class HighScores
+  attr_reader :scores
+
   def initialize(scores)
     @scores = scores
   end
-
-  attr_reader :scores
 
   def latest
     scores.last

@@ -8,7 +8,7 @@
 
 module Acronym
   def self.abbreviate(sentence)
-    sanitize_sentence = sentence.downcase.gsub(/[^a-z]/, ' ')
+    sanitize_sentence = sentence.downcase.gsub(/[^a-z']/, ' ')
     split_sentence = sanitize_sentence.split
     map_acronym = split_sentence.map { |i| i[0] }
     map_acronym.join.upcase

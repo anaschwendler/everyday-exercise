@@ -36,6 +36,10 @@ class AcronymTest < Minitest::Test
   end
 
   def test_apostrophes
+    assert_equal 'HC', Acronym.abbreviate("Halley's Comet")
+  end
+
+  def test_underscore_emphasis
     assert_equal 'TRNT', Acronym.abbreviate('The Road _Not_ Taken')
   end
 end

@@ -6,6 +6,9 @@
 # To get started with TDD, see the `README.md` file in your
 # `ruby/series` directory.
 
+# LESSONS
+# each_cons(n) means each consecutive for amount n
+
 class Series
   def initialize(string)
     @string = string
@@ -18,10 +21,7 @@ class Series
     raise ArgumentError, 'String lenght should be greater than serie lenght' unless string_length >= series_length
 
     series = []
-    (0..(string_length - series_length)).each do |i|
-      series.append(string[i..(i + series_length - 1)])
-    end
-
+    string.chars.each_cons(series_length) { |i| series << i.join }
     series
   end
 end

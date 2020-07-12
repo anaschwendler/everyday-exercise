@@ -8,6 +8,8 @@
 
 # LESSONS
 # \b allows you to perform a whole words only search using a regular expression.
+# tally : Tallies the collection, i.e., counts the occurrences of each element.
+# Returns a hash with the elements of the collection as keys and the corresponding counts as values.
 
 class Phrase
   attr_reader :phrase
@@ -17,17 +19,6 @@ class Phrase
   end
 
   def word_count
-    splitted_phrase = phrase.downcase.scan(/\b[\w']+\b/)
-    word_frequency = {}
-
-    splitted_phrase.each do |word|
-      if word_frequency.key? word
-        word_frequency[word] += 1
-      else
-        word_frequency[word] = 1
-      end
-    end
-
-    word_frequency
+    phrase.downcase.scan(/\b[\w']+\b/).tally
   end
 end

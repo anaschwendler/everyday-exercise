@@ -10,9 +10,6 @@ module Isogram
   def self.isogram?(sentence)
     sanitize_sentence = sentence.downcase.gsub(/[^a-z]/, '')
 
-    char_repetition = Hash.new(0)
-    sanitize_sentence.chars.map { |i| char_repetition[i] += 1 }
-
-    sanitize_sentence.length == char_repetition.length
+    sanitize_sentence.length == sanitize_sentence.chars.uniq.join.length
   end
 end

@@ -6,12 +6,12 @@
 # To get started with TDD, see the `README.md` file in your
 # `ruby/scrabble-score` directory.
 
-CORRESPONDENCE = {
+SCRABBLE_SCORE = {
   1 => %w[A E I O U L N R S T],
   2 => %w[D G],
   3 => %w[B C M P],
   4 => %w[F H V W Y],
-  5 => ['K'],
+  5 => %w[K],
   8 => %w[J X],
   10 => %w[Q Z]
 }.freeze
@@ -37,7 +37,7 @@ class Scrabble
     score = 0
 
     word.each_char do |letter|
-      letter_score, _letters = CORRESPONDENCE.find { |k, v| k if v.include?(letter.upcase) }
+      letter_score, _letters = SCRABBLE_SCORE.find { |k, v| k if v.include?(letter.upcase) }
       score += letter_score unless letter_score.nil?
     end
 

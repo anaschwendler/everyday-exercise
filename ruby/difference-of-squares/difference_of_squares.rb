@@ -22,7 +22,7 @@ class Squares
   end
 
   def difference
-    square_of_sum - sum_of_squares
+    (square_of_sum - sum_of_squares).abs
   end
 
   private

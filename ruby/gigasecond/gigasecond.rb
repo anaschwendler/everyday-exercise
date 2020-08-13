@@ -6,8 +6,10 @@
 # To get started with TDD, see the `README.md` file in your
 # `ruby/gigasecond` directory.
 
+GIGASECOND = 1E9
+
 module Gigasecond
   def self.from(start_time)
-    start_time + 10**9
+    start_time + GIGASECOND
   end
 end

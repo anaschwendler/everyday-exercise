@@ -6,21 +6,14 @@
 # To get started with TDD, see the `README.md` file in your
 # `ruby/rna-transcription` directory.
 
-TRANSCRIPTION = {
-  'G' => 'C',
-  'C' => 'G',
-  'T' => 'A',
-  'A' => 'U'
-}.freeze
+# LESSONS
+# .tr(from_str, to_str) does:
+# Returns a copy of str with the characters in from_str replaced by the
+# corresponding characters in to_str. If to_str is shorter than from_str,
+# it is padded with its last character in order to maintain the correspondence.
 
 module Complement
   def self.of_dna(strand)
-    rna_strand = ''
-
-    strand.chars.each do |c|
-      rna_strand += TRANSCRIPTION[c]
-    end
-
-    rna_strand
+    strand.tr('GCTA', 'CGAU')
   end
 end

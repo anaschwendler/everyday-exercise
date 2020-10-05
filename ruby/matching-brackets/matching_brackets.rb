@@ -6,12 +6,6 @@
 # To get started with TDD, see the `README.md` file in your
 # `ruby/matching-brackets` directory.
 
-CORRESPONDENCE = {
-  '(' => ')',
-  '[' => ']',
-  '{' => '}'
-}.freeze
-
 module Brackets
   def self.paired?(entry)
     entry_balance = []

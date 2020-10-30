@@ -30,7 +30,7 @@ class Affine
       encoded_word.concat(letter)
     end
 
-    group_chiphertext(encoded_word)
+    group_ciphertext(encoded_word)
   end
 
   def decode(word)
@@ -68,7 +68,7 @@ class Affine
     ((key_a * LETTER_INDEX.index(character)) + key_b) % ROMAN_ALPHABET_LENGTH
   end
 
-  def group_chiphertext(encrypted_word)
+  def group_ciphertext(encrypted_word)
     encrypted_word.chars.each_slice(5).map(&:join).join(' ')
   end
 

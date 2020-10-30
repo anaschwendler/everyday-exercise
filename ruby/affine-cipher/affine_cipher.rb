@@ -11,14 +11,14 @@ LETTER_INDEX = ('a'..'z').to_a
 NO_COPRIME = 'Error: a and m must be coprime.'.freeze
 
 class Affine
-  attr_reader :key_a, :key_b, :encripted_alphabet
+  attr_reader :key_a, :key_b, :encrypted_alphabet
 
   def initialize(key_a, key_b)
     raise ArgumentError, NO_COPRIME unless coprime?(key_a)
 
     @key_a = key_a
     @key_b = key_b
-    @encripted_alphabet = define_encripted_alphabet
+    @encrypted_alphabet = define_encrypted_alphabet
   end
 
   def encode(word)
@@ -26,7 +26,7 @@ class Affine
     sanitized_word = sanitize_word(word)
 
     sanitized_word.each_char do |c|
-      letter = numeric?(c) ? c : encripted_alphabet[c]
+      letter = numeric?(c) ? c : encrypted_alphabet[c]
       encoded_word.concat(letter)
     end
 
@@ -38,19 +38,19 @@ class Affine
     sanitized_word = sanitize_word(word)
 
     sanitized_word.each_char do |c|
-      letter = numeric?(c) ? c : encripted_alphabet.key(c)
+      letter = numeric?(c) ? c : encrypted_alphabet.key(c)
       decoded_word.concat(letter)
     end
 
     decoded_word
   end
 
-  def define_encripted_alphabet
+  def define_encrypted_alphabet
     dictionary = {}
 
     ('a'..'z').each do |char|
-      encripted_value = letter_encription(char)
-      dictionary[char] = LETTER_INDEX[encripted_value]
+      encrypted_value = letter_encryption(char)
+      dictionary[char] = LETTER_INDEX[encrypted_value]
     end
 
     dictionary
@@ -64,12 +64,12 @@ class Affine
     word.downcase.gsub(/[^a-z0-9']/, '')
   end
 
-  def letter_encription(character)
+  def letter_encryption(character)
     ((key_a * LETTER_INDEX.index(character)) + key_b) % ROMAN_ALPHABET_LENGTH
   end
 
-  def group_chiphertext(encripted_word)
-    encripted_word.chars.each_slice(5).map(&:join).join(' ')
+  def group_chiphertext(encrypted_word)
+    encrypted_word.chars.each_slice(5).map(&:join).join(' ')
   end
 
   def numeric?(letter)

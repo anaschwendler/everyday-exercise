@@ -10,13 +10,14 @@ ROMAN_ALPHABET_LENGTH = ('a'..'z').count
 LETTER_INDEX = ('a'..'z').to_a
 
 class Affine
-  attr_reader :key_a, :key_b
+  attr_reader :key_a, :key_b, :encripted_alphabet
 
   def initialize(key_a, key_b)
     raise ArgumentError, 'Error: a and m must be coprime.' unless key_a.gcd(ROMAN_ALPHABET_LENGTH) == 1
 
     @key_a = key_a
     @key_b = key_b
+    @encripted_alphabet = define_encripted_alphabet
   end
 
   def encode(word)
@@ -24,7 +25,8 @@ class Affine
     sanitized_word = sanitize_word(word)
 
     sanitized_word.each_char do |c|
-      encoded_word.concat(encode_concat_char(c))
+      letter = numeric?(c) ? c : encripted_alphabet[c]
+      encoded_word.concat(letter)
     end
 
     group_chiphertext(encoded_word)
@@ -35,28 +37,22 @@ class Affine
     sanitized_word = sanitize_word(word)
 
     sanitized_word.each_char do |c|
-      decoded_word.concat(decode_concat_char(c))
+      letter = numeric?(c) ? c : encripted_alphabet.key(c)
+      decoded_word.concat(letter)
     end
 
     decoded_word
   end
 
-  def encode_concat_char(letter)
-    numeric?(letter) ? letter : encode_letter(letter)
-  end
+  def define_encripted_alphabet
+    dictionary = {}
 
-  def encode_letter(letter)
-    encripted_value = letter_encription(letter)
-    LETTER_INDEX[encripted_value]
-  end
+    ('a'..'z').each do |char|
+      encripted_value = letter_encription(char)
+      dictionary[char] = LETTER_INDEX[encripted_value]
+    end
 
-  def decode_concat_char(letter)
-    numeric?(letter) ? letter : decode_letter(letter)
-  end
-
-  def decode_letter(letter)
-    decripted_value = letter_decription(letter)
-    LETTER_INDEX[decripted_value]
+    dictionary
   end
 
   def sanitize_word(word)
@@ -65,14 +61,6 @@ class Affine
 
   def letter_encription(character)
     ((key_a * LETTER_INDEX.index(character)) + key_b) % ROMAN_ALPHABET_LENGTH
-  end
-
-  def letter_decription(character)
-    (mmi * (LETTER_INDEX.index(character) - key_b)).round % ROMAN_ALPHABET_LENGTH
-  end
-
-  def mmi
-    (0...ROMAN_ALPHABET_LENGTH).find { |n| ((key_a * n) % ROMAN_ALPHABET_LENGTH) == 1 }
   end
 
   def group_chiphertext(encripted_word)

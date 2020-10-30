@@ -8,12 +8,13 @@
 
 ROMAN_ALPHABET_LENGTH = ('a'..'z').count
 LETTER_INDEX = ('a'..'z').to_a
+NO_COPRIME = 'Error: a and m must be coprime.'.freeze
 
 class Affine
   attr_reader :key_a, :key_b, :encripted_alphabet
 
   def initialize(key_a, key_b)
-    raise ArgumentError, 'Error: a and m must be coprime.' unless key_a.gcd(ROMAN_ALPHABET_LENGTH) == 1
+    raise ArgumentError, NO_COPRIME unless coprime?(key_a)
 
     @key_a = key_a
     @key_b = key_b
@@ -53,6 +54,10 @@ class Affine
     end
 
     dictionary
+  end
+
+  def coprime?(key_a)
+    key_a.gcd(ROMAN_ALPHABET_LENGTH) == 1
   end
 
   def sanitize_word(word)

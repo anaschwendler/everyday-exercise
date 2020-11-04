@@ -37,7 +37,7 @@ class Scrabble
     score = 0
 
     word.each_char do |letter|
-      letter_score, _letters = SCRABBLE_SCORE.find { |k, v| k if v.include?(letter.upcase) }
+      letter_score, _letters = SCRABBLE_SCORE.find { |_k, v| v.include?(letter.upcase) }
       score += letter_score unless letter_score.nil?
     end
 

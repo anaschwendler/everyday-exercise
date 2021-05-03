@@ -8,6 +8,7 @@
 
 class Robot
   attr_accessor :name
+
   @names = ('AA000'..'ZZ999').to_a.shuffle
 
   class << self

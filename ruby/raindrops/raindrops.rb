@@ -16,7 +16,7 @@ module Raindrops
   def self.convert(digit)
     raindrops = ''
 
-    DIVISORS.keys.each do |d|
+    DIVISORS.each_key do |d|
       raindrops += DIVISORS[d] if (digit % d).zero?
     end
 

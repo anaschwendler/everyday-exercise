@@ -12,6 +12,7 @@
 
 class SumOfMultiples
   attr_reader :multiples
+
   def initialize(*multiples)
     @multiples = multiples
   end

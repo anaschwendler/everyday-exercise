@@ -14,7 +14,7 @@ module Bob
       "Calm down, I know what I'm doing!"
     when /\?\s{2,}*\z/
       'Sure.'
-    when /[A-Z]\!$/, /^[A-Z]{3,}/, /^[A-Z]+.*[A-Z]+$/
+    when /[A-Z]!$/, /^[A-Z]{3,}/, /^[A-Z]+.*[A-Z]+$/
       'Whoa, chill out!'
     when /^\s*\z/
       'Fine. Be that way!'

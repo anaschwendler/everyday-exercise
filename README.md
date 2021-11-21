@@ -25,29 +25,25 @@ the `-t` command adds a name to the docker image.
 ### Run python linter
 
 ```
-docker run --rm --volume ${PWD}:/app everyday-exercise \
-    black --check ./python/
+docker run --rm --volume ${PWD}:/app everyday-exercise black --check ./python/
 ```
 
 ### Run python tests
 
 ```
-docker run --rm --volume ${PWD}:/app everyday-exercise \
-    pytest ./python/
+docker run --rm --volume ${PWD}:/app everyday-exercise pytest ./python/
 ```
 
 ### Run ruby linter
 
 ```
-docker run --rm --volume ${PWD}:/app everyday-exercise \
-    rubocop ./ruby
+docker run --rm --volume ${PWD}:/app everyday-exercise rubocop ./ruby
 ```
 
 ### Run ruby tests
 
 ```
-docker run --rm --volume ${PWD}:/app everyday-exercise \
-    sh -c "cd ruby; rake"
+docker run --rm --volume ${PWD}:/app everyday-exercise sh -c "cd ruby; rake"
 ```
 
 We use `--volume` in order to use the correct updated files in the image. This was made to be a simple usage of Docker, usually for this purpose we use Docker Compose.

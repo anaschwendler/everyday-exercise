@@ -46,4 +46,10 @@ docker run --rm --volume ${PWD}:/app everyday-exercise rubocop ./ruby
 docker run --rm --volume ${PWD}:/app everyday-exercise sh -c "cd ruby; rake"
 ```
 
+### Open shell
+
+```
+docker run -it --volume ${PWD}:/app everyday-exercise sh
+```
+
 We use `--volume` in order to use the correct updated files in the image. This was made to be a simple usage of Docker, usually for this purpose we use Docker Compose.

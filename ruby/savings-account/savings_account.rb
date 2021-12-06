@@ -5,7 +5,8 @@ module SavingsAccount
     if balance.negative? then -3.213
     elsif balance < 1000 then 0.5
     elsif balance < 5000 then 1.621
-    else 2.475
+    else
+      2.475
     end
   end
 

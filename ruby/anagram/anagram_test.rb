@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require_relative 'anagram'
 
@@ -28,7 +30,7 @@ class AnagramTest < Minitest::Test
   def test_detects_anagram
     detector = Anagram.new('listen')
     anagrams = detector.match(%w[enlists google inlets banana])
-    expected = ["inlets"]
+    expected = ['inlets']
     assert_equal expected, anagrams
   end
 
@@ -48,7 +50,7 @@ class AnagramTest < Minitest::Test
 
   def test_does_not_detect_non_anagrams_with_identical_checksum
     detector = Anagram.new('mass')
-    anagrams = detector.match(["last"])
+    anagrams = detector.match(['last'])
     expected = []
     assert_equal expected, anagrams
   end
@@ -56,34 +58,34 @@ class AnagramTest < Minitest::Test
   def test_detects_anagrams_case_insensitively
     detector = Anagram.new('Orchestra')
     anagrams = detector.match(%w[cashregister Carthorse radishes])
-    expected = ["Carthorse"]
+    expected = ['Carthorse']
     assert_equal expected, anagrams
   end
 
   def test_detects_anagrams_using_case_insensitive_subject
     detector = Anagram.new('Orchestra')
     anagrams = detector.match(%w[cashregister carthorse radishes])
-    expected = ["carthorse"]
+    expected = ['carthorse']
     assert_equal expected, anagrams
   end
 
   def test_detects_anagrams_using_case_insensitive_possible_matches
     detector = Anagram.new('orchestra')
     anagrams = detector.match(%w[cashregister Carthorse radishes])
-    expected = ["Carthorse"]
+    expected = ['Carthorse']
     assert_equal expected, anagrams
   end
 
   def test_does_not_detect_an_anagram_if_the_original_word_is_repeated
     detector = Anagram.new('go')
-    anagrams = detector.match(["go Go GO"])
+    anagrams = detector.match(['go Go GO'])
     expected = []
     assert_equal expected, anagrams
   end
 
   def test_anagrams_must_use_all_letters_exactly_once
     detector = Anagram.new('tapper')
-    anagrams = detector.match(["patter"])
+    anagrams = detector.match(['patter'])
     expected = []
     assert_equal expected, anagrams
   end
@@ -98,7 +100,7 @@ class AnagramTest < Minitest::Test
   def test_words_other_than_themselves_can_be_anagrams
     detector = Anagram.new('LISTEN')
     anagrams = detector.match(%w[Listen Silent LISTEN])
-    expected = ["Silent"]
+    expected = ['Silent']
     assert_equal expected, anagrams
   end
 end

@@ -38,7 +38,9 @@ jobs:
         run: |
           pytest ./python/
           cd ruby; rake
+
+      - name: Run Go Tests
+        run: |
           for dir in ./go/*/; do
             (cd "$dir" && go test ./...)
           done
-

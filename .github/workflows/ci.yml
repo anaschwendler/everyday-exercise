@@ -18,7 +18,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-        
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -38,9 +38,7 @@ jobs:
         run: |
           pytest ./python/
           cd ruby; rake
-
-      - name: Run Go Tests
-        run: |
           for dir in ./go/*/; do
             (cd "$dir" && go test ./...)
           done
+

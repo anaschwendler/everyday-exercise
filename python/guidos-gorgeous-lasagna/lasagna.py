@@ -5,6 +5,7 @@
 EXPECTED_BAKE_TIME = 40
 PREPARATION_TIME = 2
 
+
 # TODO: define the 'bake_time_remaining()' function
 def bake_time_remaining(elapsed_bake_time):
     """Calculate the bake time remaining.

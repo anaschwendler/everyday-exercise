@@ -46,6 +46,12 @@ docker run --rm --volume ${PWD}:/app everyday-exercise rubocop ./ruby
 docker run --rm --volume ${PWD}:/app everyday-exercise sh -c "cd ruby; rake"
 ```
 
+### Run go tests
+
+```
+docker run --rm --volume ${PWD}:/app everyday-exercise sh -c 'for dir in ./go/*/; do (cd "$dir" && go test); done'
+```
+
 ### Open shell
 
 ```

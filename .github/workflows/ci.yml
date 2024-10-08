@@ -7,17 +7,22 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0.2'
+          ruby-version: '3.3'
+        
+      - name: Set up Go
+        uses: ruby/setup-go@v5
+        with:
+          go-version: '>=1.17.0'
 
       - name: Install Dependencies
         run: |
@@ -33,3 +38,4 @@ jobs:
         run: |
           pytest ./python/
           cd ruby; rake
+          for dir in ./go/*/; do (cd "$dir" && go test); done

@@ -39,6 +39,6 @@ class Clock
   private
 
   def format_time(time)
-    format('%<time>02d', time: time)
+    format('%<time>02d', time:)
   end
 end

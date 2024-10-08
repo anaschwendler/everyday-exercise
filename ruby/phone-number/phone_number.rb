@@ -40,7 +40,7 @@ module PhoneNumber
   end
 
   def self.check_valid_phone(phone)
-    (area_digit?(phone) && exchange_digit?(phone))
+    area_digit?(phone) && exchange_digit?(phone)
   end
 
   def self.area_digit?(phone)

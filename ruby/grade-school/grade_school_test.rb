@@ -53,7 +53,7 @@ class SchoolTest < Minitest::Test
     grade = 6
     students = %w[Beemee Aimee Ceemee]
     students.each { |student| school.add(student, grade) }
-    expected = [{ grade: grade, students: students.sort }]
+    expected = [{ grade:, students: students.sort }]
     assert_equal expected, school.students_by_grade
   end
 
